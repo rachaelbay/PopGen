@@ -52,11 +52,17 @@ There are many different filters you can work with. Consult the VCFtools manual 
   
   --min-alleles | minimum numbers of allelic states observed
   
-  --max-alleles | maximum number of allelis states
+  --max-alleles | maximum number of allelic states
   
   --maf | minor allele frequency cutoff
+  
+  --max-missing | the fraction of missing genotypes allowed
+  
+  --minGQ | minimum genotype quality score (phred scale)
+  
+  --minDP | minimum sequence depth
 
-Filter this set of SNPs however you want, we'll use them to make a PCA and for outlier analysis. Don't keep too many or they'll take forever to upload (I suggest keeping between 20K and 100K).
+Filter this set of SNPs however you want, we'll use them to make a PCA and for outlier analysis.
 
 # Principal Components Analysis
 One of the most basic ways to visualize mulitvariate data is with a principal components analysis (PCA). Here we'll make one based on the filtered SNP file you made in the last step. Since we'll do this in R on our local computers, we first need to get our vcf files from Pegasus to our laptops:
@@ -65,7 +71,7 @@ scp yourname@pegasus:/path/to/WIFL_filtered.vcf /path/on/your/computer
 ```
 Also make sure you download the R script we'll be using from the github repository: `SNPRelate.R`
 Now just step through the script using R studio to make your PCA!
-Note: SNPRelate is a great package that can do many other things besides PCA visualization, including calculating FST and relatedness. IF you have extra time, you can play around with these functions. Here is a great tutorial: https://bioconductor.org/packages/release/bioc/vignettes/SNPRelate/inst/doc/SNPRelateTutorial.html
+Note: SNPRelate is a great package that can do many other things besides PCA visualization, including calculating FST and relatedness. If you have extra time, you can play around with these functions. Here is a great tutorial: https://bioconductor.org/packages/release/bioc/vignettes/SNPRelate/inst/doc/SNPRelateTutorial.html
 
 # Outlier Analysis
 There are many software programs designed to do outlier analysis. We'll use OutFLANK because it is easy to implement and its non-parametric approach is good for organisms with complex demography. Download the R script from the github repository: `OutFLANK.R` and work through it step by step.
